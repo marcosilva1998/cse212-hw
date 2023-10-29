@@ -38,8 +38,12 @@ public static class ArraysTester {
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        var numbers = new double [length] ; //Create the array to contain the return values
+        for (int i=1;i<length+1;i++){      //iterate by the length+1 times, begining by 1
+            numbers[i-1]=number*i;        //add to the array the result, how the index starts at 1 I use i-1 to start storing at position 0 of the array
+        }
 
-        return new double[0]; // replace this return statement with your own
+        return numbers;
     }
     
     /// <summary>
@@ -56,6 +60,22 @@ public static class ArraysTester {
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        
+        var numbers = new List<int> {} ; //Create the List to contain the return values
+        var y=data.Count-amount;         // Obtain the index to know where begin
+        
+        for (int i=y;i<data.Count;i++){     //From the index obtained add the elements until the end of list
+            numbers.Add(data[i]);
+        }
 
+        for (int x=0;x<y;x++){              //Add the elements form index 0 to index obtained -1 
+            numbers.Add(data[x]);
+        }
+        Console.Write("< ");
+        for (int z=0;z<numbers.Count;z++){    //Print the resulting list
+           
+            Console.Write(numbers[z]+" ");                   
+        }
+        Console.Write(">");
     }
 }

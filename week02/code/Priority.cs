@@ -18,23 +18,68 @@ public static class Priority {
         // Test Cases
 
         // Test 1
-        // Scenario: 
-        // Expected Result: 
+        // Scenario:  Enqueue three  items
+        // Expected Result: Low (Pri:1), Medium (Pri:2), High (Pri:3)
         Console.WriteLine("Test 1");
+        priorityQueue.Enqueue("Low",1);
+        priorityQueue.Enqueue("Medium",2);
+        priorityQueue.Enqueue("High",3);
+        Console.WriteLine(priorityQueue);
+  
 
-        // Defect(s) Found: 
+        // Defect(s) Found: No one
 
         Console.WriteLine("---------");
 
         // Test 2
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: Remove the item with the highest priority and return its value.
+        // Expected Result: Low (Pri:1), Medium (Pri:2)
         Console.WriteLine("Test 2");
+        priorityQueue = new PriorityQueue();
+        priorityQueue.Enqueue("Low",1);
+        priorityQueue.Enqueue("Medium",2);
+        priorityQueue.Enqueue("High",3);
+        
+        
+        Console.WriteLine(priorityQueue.Dequeue());
 
-        // Defect(s) Found: 
+        Console.WriteLine(priorityQueue);
+
+
+
+        // Defect(s) Found: needed the RemoveAt part and had a mistake in the for loop
 
         Console.WriteLine("---------");
 
-        // Add more Test Cases As Needed Below
+        // Test 3
+        // Scenario: Having more than one item with the highest priority, then the item closest to the front of the queue will be removed and its value returned.
+        // Expected Result: Low (Pri:1), Medium (Pri:2), High2 (Pri:3)
+        Console.WriteLine("Test 3");
+        priorityQueue = new PriorityQueue();
+        priorityQueue.Enqueue("Low",1);
+        priorityQueue.Enqueue("High1",3);
+        priorityQueue.Enqueue("Medium",2);
+        priorityQueue.Enqueue("High2",3);
+        
+        
+        Console.WriteLine(priorityQueue.Dequeue());
+
+        Console.WriteLine(priorityQueue);
+
+
+
+                Console.WriteLine("---------");
+
+        // Test 4
+        // Scenario:  the queue is empty
+        // Expected Result: error msg
+        Console.WriteLine("Test 4");
+        priorityQueue = new PriorityQueue();
+        
+        
+        Console.WriteLine(priorityQueue.Dequeue());
+
+
+
     }
 }

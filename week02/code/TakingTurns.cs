@@ -22,10 +22,10 @@ public static class TakingTurns {
         players.AddPerson("Bob", 2);
         players.AddPerson("Tim", 5);
         players.AddPerson("Sue", 3);
-        // Console.WriteLine(players);    // This can be un-commented out for debug help
+        Console.WriteLine(players);    // This can be un-commented out for debug help
         while (players.Length > 0)
             players.GetNextPerson();
-        // Defect(s) Found: 
+        // Defect(s) Found: In PersonQueue.cs have bad defined Enqueue method , changed insert position
 
         Console.WriteLine("---------");
 
@@ -48,7 +48,7 @@ public static class TakingTurns {
         while (players.Length > 0)
             players.GetNextPerson();
 
-        // Defect(s) Found: 
+        // Defect(s) Found: No one
 
         Console.WriteLine("---------");
 
@@ -66,7 +66,7 @@ public static class TakingTurns {
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
-        // Defect(s) Found: 
+        // Defect(s) Found: In TakingTurnsQueue bad defined GetNextPerson method , needs the case when turns are infinite
 
         Console.WriteLine("---------");
 

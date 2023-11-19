@@ -38,6 +38,17 @@ public static class DisplaySums {
     /// </summary>
     /// <param name="numbers">array of integers</param>
     private static void DisplaySumPairs(int[] numbers) {
-        // TODO Problem 2 - This should print pairs of numbers in the given array
+        var ten_set= new HashSet<int>();
+        
+        foreach (int x in numbers){
+            
+            if(ten_set.Contains(10-x)){
+                Console.WriteLine("AAAAAAAAAA"+ x.ToString()+ " " +(10 - x).ToString() ) ;
+
+
+            }
+            ten_set.Add(x);
+
+        }
     }
 }

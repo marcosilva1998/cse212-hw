@@ -1,3 +1,5 @@
+using System.Numerics;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 
 public static class SetsAndMapsTester {
@@ -111,6 +113,19 @@ public static class SetsAndMapsTester {
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
+        var words_set= new HashSet<string>(words);
+        var viewed_words=new HashSet<string>();
+    
+        foreach (var word in words_set)
+        {
+            string reversedWord = new string(word.Reverse().ToArray());
+            if(words_set.Contains(reversedWord)&&(reversedWord != word)&&( !viewed_words.Contains(word))){
+                Console.WriteLine($"{reversedWord} & {word}");
+                viewed_words.Add(reversedWord);
+                viewed_words.Add(word);
+            }
+
+        }
     }
 
     /// <summary>
@@ -131,7 +146,14 @@ public static class SetsAndMapsTester {
         var degrees = new Dictionary<string, int>();
         foreach (var line in File.ReadLines(filename)) {
             var fields = line.Split(",");
-            // Todo Problem 2 - ADD YOUR CODE HERE
+            var degree=fields[3].Trim();
+
+            if (degrees.ContainsKey(degree)){
+                degrees[degree]=degrees[degree]+1;
+            }else{
+                degrees[degree]=1;
+            }
+            
         }
 
         return degrees;
@@ -157,8 +179,44 @@ public static class SetsAndMapsTester {
     /// # Problem 3 #
     /// #############
     private static bool IsAnagram(string word1, string word2) {
-        // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
+        word1 = word1.ToLower().Replace(" ", "");
+        word2 = word2.ToLower().Replace(" ", "");
+        var letterWord1 = new Dictionary<char, int>();
+        var letterWord2 = new Dictionary<char, int>();
+
+        foreach (var i in word1) {
+            if (letterWord1.ContainsKey(i)){
+                letterWord1[i]=letterWord1[i]+1;
+            }else{
+                letterWord1[i]=1;
+            }
+
+        }
+        
+        foreach (var z in word2) {
+           if (letterWord2.ContainsKey(z)){
+                letterWord2[z]=letterWord2[z]+1;
+            }else{
+                letterWord2[z]=1;
+            }   
+        }
+        Dictionary<char, int> bigger_map;
+        Dictionary<char, int> lower_map;
+        if( letterWord1.Count > letterWord2.Count){
+           bigger_map=letterWord1;
+           lower_map= letterWord2;
+        }else{
+           bigger_map=letterWord2;
+           lower_map =letterWord1;
+        }
+       
+         foreach (var j in bigger_map) {
+           if (!lower_map.ContainsKey(j.Key) || (j.Value != lower_map[j.Key]) ){
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /// <summary>
@@ -232,5 +290,17 @@ public static class SetsAndMapsTester {
         var featureCollection = JsonSerializer.Deserialize<FeatureCollection>(json, options);
         // 1. Add your code to map the json to the feature collection object
         // 2. Print out each place a earthquake has happened today
+     
+       foreach (var each in featureCollection.Features){
+            var place =each.Properties.Place;
+            var magnitude =each.Properties.Mag;
+
+            Console.WriteLine($" {place} - Mag {magnitude}");
+
+       }
+       
+    
+       
+        
     }
 }

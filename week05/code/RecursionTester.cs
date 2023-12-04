@@ -305,11 +305,32 @@ public static class RecursionTester {
         if (currPath == null)
             currPath = new List<ValueTuple<int, int>>();
 
-        // currPath.Add((1,2)); // Use this syntax to add to the current path
 
-        // TODO Start Problem 5
-        // ADD CODE HERE
+        currPath.Add((x, y));
 
-        // Console.WriteLine(currPath.AsString()); // Use this to print out your path when you find the solution
+        if (maze.IsEnd(x, y))
+        {
+           Console.WriteLine(currPath.AsString());
+        }else
+        {
+
+            if (maze.IsValidMove(currPath,x + 1,y)){
+                List<ValueTuple<int, int>> newPath = new List<ValueTuple<int, int>>(currPath);
+                SolveMaze(maze, x + 1, y, newPath);
+            }
+            if (maze.IsValidMove(currPath,x,y+1)){
+                List<ValueTuple<int, int>> newPath = new List<ValueTuple<int, int>>(currPath);
+                SolveMaze(maze, x, y+1, newPath);
+            }
+            if (maze.IsValidMove(currPath,x - 1,y)){
+                List<ValueTuple<int, int>> newPath = new List<ValueTuple<int, int>>(currPath);
+                SolveMaze(maze, x - 1, y, newPath);
+            }
+            if (maze.IsValidMove(currPath,x,y-1)){
+                List<ValueTuple<int, int>> newPath = new List<ValueTuple<int, int>>(currPath);
+                SolveMaze(maze, x, y-1, newPath);
+            }
+        }
+
     }
 }

@@ -15,22 +15,40 @@ public class Node {
             else
                 Left.Insert(value);
         }
-        else {
+        else if (value > Data){
             // Insert to the right
             if (Right is null)
                 Right = new Node(value);
             else
                 Right.Insert(value);
-        }
+        } 
     }
 
     public bool Contains(int value) {
-        // TODO Start Problem 2
+        if (value == Data) {
+            return true;
+        }
+        else if (value < Data && Left != null) {
+            return Left.Contains(value);
+        }
+        else if (value > Data && Right != null) {
+            return Right.Contains(value);
+        }
         return false;
     }
 
-    public int GetHeight() {
-        // TODO Start Problem 4
-        return 0; // Replace this line with the correct return statement(s)
+     public int GetHeight() {
+        return GetHeightRecursive(this);
+    }
+
+    private int GetHeightRecursive(Node? node) {
+        if (node == null) {
+            return 0;
+        }
+
+        int leftHeight = GetHeightRecursive(node.Left);
+        int rightHeight = GetHeightRecursive(node.Right);
+
+        return 1 + Math.Max(leftHeight, rightHeight);
     }
 }
